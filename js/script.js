@@ -83,4 +83,49 @@ window.addEventListener('DOMContentLoaded', function() {
 
     setClock('timer', deadline);
 
+
+
+    let massage = {
+        loading: 'Loading',
+        success: "Дякую, ми скоро з Вами зв'яжемось",
+        failure: "Error"
+    };
+
+    let form = document.querySelector('.main-form'),
+        input = form.getElementsByTagName('input'),
+        statusMessege = document.createElement(statusMessege);
+
+    statusMessege.classList.add('status');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        form.appendChild(statusMessege);
+
+        let request = new XMLHttpRequest();
+        request.open('POST', 'someserver');
+        request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
+
+        let formData = new FormData(form);
+
+        let objForTransformJSON = {};
+        formData.forEach(function(value, key) {
+            obj[key] = value;
+        });
+        let json = JSON.stringify(objForTransformJSON);
+
+        request.send(JSON);
+
+        request.addEventListener('readystatechange', function() {
+            if (request.readyState < 4) {
+                statusMessege.innerHTML = massage.loading;
+            } else if (request.readyState === 4 && request.status == 200) {
+                statusMessege.innerHTML = massage.success;
+            } else {
+                statusMessege.innerHTML = massage.failure;
+            }
+        });
+        for (let i = 0; i < input.length; i++) {
+            input[i].value = '';
+        }
+    });
 });
