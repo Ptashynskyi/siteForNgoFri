@@ -1,5 +1,6 @@
 window.addEventListener('DOMContentLoaded', function() {
     'use strict'
+    // Tabs
     let tab = document.querySelectorAll('.info-header-tab'),
         info = document.querySelector('.info-header'),
         tabContent = document.querySelectorAll('.info-tabcontent');
@@ -32,6 +33,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+    // Timer
     let deadline = '2019-06-30';
 
     function getTimeRemaining(endtime) {
@@ -83,6 +85,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
     setClock('timer', deadline);
 
+    // Modal overlay
     let more = document.querySelector('.more'),
         overlay = document.querySelector('.overlay'),
         close = document.querySelector('.popup-close');
@@ -99,6 +102,7 @@ window.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     });
 
+    //Request form
     let massage = {
         loading: 'Loading',
         success: "Дякую, ми скоро з Вами зв'яжемось",
