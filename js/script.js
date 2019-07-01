@@ -255,4 +255,50 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         }
     });
+
+    //Calc sum
+
+    let persons = document.querySelectorAll('counter-block-input')[0],
+        restDays = document.querySelectorAll('counter-block-input')[1],
+        place = document.getElementById('select'),
+        total = document.getElementById('total'),
+        personsNum = 0,
+        restDayNum = 0,
+        total = 0;
+
+    totalValue.innerHTML = 0;
+
+    persons.addEventListener('change', function() {
+        personalSum = +this.value;
+        total = (personsNum + restDayNum) * 400;
+
+        if (restDays.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            totalValue.innerHTML = total;
+        }
+
+    });
+
+    restDays.addEventListener('change', function() {
+        restDayNum = +this.value;
+        total = (personsNum + restDayNum) * 400;
+
+        if (persons.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            totalValue.innerHTML = total;
+        }
+
+    });
+
+    place.addEventListener('change', function() {
+        if (persons.value == '' || restDays.value == '') {
+            totalValue.innerHTML = 0;
+        } else {
+            let a = total;
+            totalValue.innerHTML = a * this.option[this.selectedIndex].value;
+        }
+    })
+
 });
